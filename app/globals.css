@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+:root {
+  --radius: 0.75rem;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
+}
