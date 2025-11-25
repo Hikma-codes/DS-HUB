@@ -7,7 +7,7 @@ const courses = [
         id: 1,
         title: "Digital Marketing",
         description: "Learn the fundamentals of digital marketing, including SEO, social media marketing, email campaigns, and analytics.",
-        mentor: "Sarah Johnson",
+        mentor: "Marcus Johnson",
         mentorTitle: "Digital Marketing Expert",
         mentorBio: "10+ years of experience in digital marketing strategy and execution",
         level: "Beginner",
@@ -45,20 +45,18 @@ const courses = [
             { id: 3, title: "Creating Frames & Layouts", url: "https://www.youtube.com/embed/wvFd-z7jSaA", duration: "20:15" },
             { id: 4, title: "Working with Components", url: "https://www.youtube.com/embed/k74IrUNaJVk", duration: "25:40" },
             { id: 5, title: "Auto Layout Mastery", url: "https://www.youtube.com/embed/TyaGpGDFczw", duration: "22:20" },
-            { id: 6, title: "Prototyping & Interactions", url: "https://www.youtube.com/embed/X5qiBwNpgp8", duration: "28:15" },
+            { id: 6, title: "Prototyping & Interactions", url: "https://www.youtube.com/embed/k1iwiHJrAWI?si=sNhVem_J6Srp8D0m", duration: "20:35" },
             { id: 7, title: "Design Systems in Figma", url: "https://www.youtube.com/embed/Dtd40cHQQlk", duration: "30:45" },
-            { id: 8, title: "Responsive Design", url: "https://www.youtube.com/embed/hbN9RGcQFNU", duration: "24:30" },
-            { id: 9, title: "Collaboration & Handoff", url: "https://www.youtube.com/embed/g03xtgHN6hE", duration: "19:20" },
-            { id: 10, title: "Advanced Figma Techniques", url: "https://www.youtube.com/embed/RFi7jmwA5B4", duration: "32:10" }
-        ],
-        topics: ["Interface Design", "Prototyping", "Components", "Auto Layout", "Design Systems"],
+         ],
+        
+         topics: ["Interface Design", "Prototyping", "Components", "Auto Layout", "Design Systems"],
         requirements: ["Computer with internet", "Figma account (free)", "Basic design sense"]
     },
     {
         id: 3,
         title: "UI/UX Design",
         description: "Comprehensive UI/UX design course covering user research, wireframing, prototyping, and usability testing.",
-        mentor: "Alex Rodriguez",
+        mentor: "Elena Rodriguez",
         mentorTitle: "UI/UX Design Expert",
         mentorBio: "Lead UX designer with 8+ years creating user-centered digital experiences",
         level: "Beginner",
@@ -66,18 +64,17 @@ const courses = [
         students: 187,
         rating: 4.7,
         videos: [
-            { id: 1, title: "Introduction to UI/UX", url: "https://www.youtube.com/embed/c9Wg6Cb_YlU", duration: "16:20" },
-            { id: 2, title: "User Research Methods", url: "https://www.youtube.com/embed/WpzmOH0hrEM", duration: "23:45" },
-            { id: 3, title: "Creating User Personas", url: "https://www.youtube.com/embed/XnG4c4gXaQY", duration: "19:30" },
-            { id: 4, title: "Information Architecture", url: "https://www.youtube.com/embed/Ij4WquJaRTc", duration: "21:15" },
-            { id: 5, title: "Wireframing Basics", url: "https://www.youtube.com/embed/qpH7-KFWZRI", duration: "25:20" },
-            { id: 6, title: "Visual Design Principles", url: "https://www.youtube.com/embed/a5KYlHNKQB8", duration: "27:40" },
-            { id: 7, title: "Color Theory & Typography", url: "https://www.youtube.com/embed/_2LLXnUdUIc", duration: "22:30" },
-            { id: 8, title: "Mobile UI Design", url: "https://www.youtube.com/embed/3dykwOgIA6Q", duration: "26:15" },
-            { id: 9, title: "Usability Testing", url: "https://www.youtube.com/embed/BrLwlzDZYeU", duration: "24:45" },
-            { id: 10, title: "UX Portfolio Creation", url: "https://www.youtube.com/embed/X2Gn2ScFJ5s", duration: "29:30" }
+            { id: 1, title: "Introduction to UX", url: "https://www.youtube.com/embed/c9Wg6Cb_YlU", duration: "1:26:21" },
+            { id: 2, title: "User Research Methods", url: "https://www.youtube.com/embed/WpzmOH0hrEM", duration: "1:38:29" },
+            { id: 3, title: "Creating User Personas", url: "https://www.youtube.com/embed/XnG4c4gXaQY", duration: "12:52" },
+            { id: 4, title: "Information Architecture", url: "https://www.youtube.com/embed/OJLfjgVlwDo?si=AI4XMDgfAZQdagq_", duration: "17:20" },
+            { id: 5, title: "Wireframin & Prototyping", url: "https://www.youtube.com/embed/qpH7-KFWZRI", duration: "25:20" },
+            { id: 6, title: "Usability Testing", url: "https://www.youtube.com/embed/nYCJTea1AUQ?si=RNcxUcK7QDFDgyyf", duration: "1:03:36" },
+            { id: 7, title: "Color Theory for Beginners", url: "https://www.youtube.com/embed/2QTHs7QSR9o?si=hQDYVM4Qf8n5alE1", duration: "24:45" },
+            { id: 8, title: "Mobile UI Design", url: "https://www.youtube.com/embed/ThmHV38Ecqk?si=-zLMmlRlt7PKNbxa", duration: "4:14:45" },
+            { id: 9, title: "UX Portfolio Creation", url: "https://www.youtube.com/embed/mmgxspm9JWs?si=Co1nf_7CtHUkeDZw", duration: "17:16" }
         ],
-        topics: ["User Research", "Wireframing", "Visual Design", "Usability", "Design Thinking"],
+        topics: ["User Research", "Wireframing", "Portofolio Creation", "Usability", "Design Thinking"],
         requirements: ["Creative mindset", "Basic computer skills", "Design software (Figma/Sketch)"]
     }
 ];
