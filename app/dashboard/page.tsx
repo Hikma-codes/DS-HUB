@@ -82,41 +82,36 @@ export default function DashboardPage() {
           Back to Home
         </Link>
 
-        <h1 className="text-4xl font-bold mb-6">Student Dashboard</h1>
-
-        {!userId ? (
-          <Card className="mb-6 bg-slate-900/50 border-slate-700">
-            <CardContent>
-              <p className="text-gray-300 mb-2">No student selected. Set a local demo user to view the student dashboard.</p>
-              <div className="flex gap-2">
-                <Button onClick={() => setAsCurrentUser('student_1', 'Esi Micah')}>Use demo student: Esi</Button>
-                <Button onClick={() => setAsCurrentUser('student_2', 'Stephanie')}>Use demo student: Stephanie</Button>
-              </div>
-            </CardContent>
-          </Card>
-        ) : (
-          <>
-            <Card className="mb-6 bg-slate-900/50 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white">{profileName}'s Progress</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div>
-                    <p className="text-gray-400 text-sm">Student ID</p>
-                    <p className="text-white font-medium">{userId}</p>
-                  </div>
-                  <div>
-                    <p className="text-gray-400 text-sm">Enrollments</p>
-                    <p className="text-white font-medium">{enrollments.length}</p>
-                  </div>
-                  <div>
-                    <Button onClick={logout}>Sign out</Button>
-                  </div>
+        <div className="flex items-center justify-between mb-6 gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-black font-bold text-xl">{profileName ? profileName.charAt(0) : 'S'}</div>
+            <div>
+              <h2 className="text-2xl font-semibold">{profileName || 'Student'}</h2>
+              <p className="text-sm text-gray-400">{userId ? `ID: ${userId}` : 'No student selected'}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="text-right mr-4">
+              <div className="text-sm text-gray-400">Overall progress</div>
+              <div className="text-lg font-medium text-white">{enrollments.length ? Math.round(enrollments.reduce((s, e) => s + e.progress, 0) / Math.max(1, enrollments.length)) : 0}%</div>
+            </div>
+            <div className="w-20 h-20 rounded-full bg-slate-800 flex items-center justify-center" style={{ background: `conic-gradient(#10b981 ${enrollments.length ? Math.round(enrollments.reduce((s, e) => s + e.progress, 0) / Math.max(1, enrollments.length)) : 0}%, rgba(255,255,255,0.06) 0)` }}>
+              <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center text-sm font-semibold">{enrollments.length ? Math.round(enrollments.reduce((s, e) => s + e.progress, 0) / Math.max(1, enrollments.length)) : 0}%</div>
+            </div>
+            <div>
+              {userId ? <Button onClick={logout}>Sign out</Button> : (
+                <div className="flex gap-2">
+                  <Button onClick={() => setAsCurrentUser('student_1', 'Esi Micah')}>Esi</Button>
+                  <Button onClick={() => setAsCurrentUser('student_2', 'Stephanie')}>Stephanie</Button>
                 </div>
-              </CardContent>
-            </Card>
+              )}
+            </div>
+          </div>
+        </div>
 
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <h3 className="text-xl font-semibold mb-3">Your Courses</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {loading ? (
                 <Card className="bg-slate-900/50 border-slate-700">
@@ -124,12 +119,12 @@ export default function DashboardPage() {
                 </Card>
               ) : enrollments.length === 0 ? (
                 <Card className="bg-slate-900/50 border-slate-700">
-                  <CardContent>No enrollments found for this student.</CardContent>
+                  <CardContent>No enrollments found — enroll in a course to get started.</CardContent>
                 </Card>
               ) : (
                 enrollments.map((enr) => {
                   const course = courses.find((c) => c.id === enr.courseId)
-                  const localProgressRaw = localStorage.getItem(`course-progress-${enr.courseId}`)
+                  const localProgressRaw = globalThis?.localStorage?.getItem ? localStorage.getItem(`course-progress-${enr.courseId}`) : null
                   let localCompletedCount = 0
                   try {
                     const parsed = localProgressRaw ? JSON.parse(localProgressRaw) : []
@@ -137,22 +132,29 @@ export default function DashboardPage() {
                   } catch (e) { }
 
                   return (
-                    <Card key={enr.id} className="bg-slate-900/50 border-slate-700">
-                      <CardHeader>
-                        <CardTitle className="text-white">{course?.title || `Course ${enr.courseId}`}</CardTitle>
-                      </CardHeader>
+                    <Card key={enr.id} className="bg-slate-900/60 border-transparent hover:scale-[1.01] transition-transform">
                       <CardContent>
-                        <p className="text-sm text-gray-300 mb-2">Mentor: {course?.mentor || 'TBA'}</p>
-                        <div className="w-full bg-slate-800 rounded-full h-2 mb-3">
-                          <div className="bg-green-600 h-2 rounded-full" style={{ width: `${enr.progress}%` }} />
-                        </div>
-                        <div className="flex items-center justify-between text-sm text-gray-400">
-                          <span>Server progress: <span className="text-white">{enr.progress}%</span></span>
-                          <span>Local lessons done: <span className="text-white">{localCompletedCount}/{course?.lessons?.length || 0}</span></span>
-                        </div>
-                        <div className="mt-3 flex gap-2">
-                          <Link href={`/course/${enr.courseId}`} className="px-3 py-1 bg-white text-black rounded text-sm">Open Course</Link>
-                          <Button onClick={() => window.localStorage.removeItem(`course-progress-${enr.courseId}`)}>Clear Local Progress</Button>
+                        <div className="flex items-start gap-3">
+                          <div className="w-14 h-14 rounded-md bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center text-white font-semibold">{(course?.title || '').split(' ').slice(0, 2).map(s => s[0] || '').join('')}</div>
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="font-medium text-white">{course?.title || `Course ${enr.courseId}`}</div>
+                                <div className="text-xs text-gray-400">{course?.mentor || 'Mentor'}</div>
+                              </div>
+                              <div className="text-sm text-gray-300">{enr.progress}%</div>
+                            </div>
+                            <div className="w-full bg-slate-800 rounded-full h-2 mt-3">
+                              <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${enr.progress}%` }} />
+                            </div>
+                            <div className="flex items-center justify-between mt-3 text-xs text-gray-400">
+                              <span>{localCompletedCount}/{course?.lessons?.length || 0} lessons done</span>
+                              <div className="flex gap-2">
+                                <Link href={`/course/${enr.courseId}`} className="px-3 py-1 bg-white text-black rounded text-sm">Continue</Link>
+                                <Button variant="outline" onClick={() => { window.localStorage.removeItem(`course-progress-${enr.courseId}`); }}>Clear</Button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>
@@ -160,8 +162,26 @@ export default function DashboardPage() {
                 })
               )}
             </div>
-          </>
-        )}
+          </div>
+
+          <aside>
+            <h3 className="text-xl font-semibold mb-3">Recent Activity</h3>
+            <div className="space-y-3">
+              <div className="p-3 bg-slate-900/50 rounded border border-slate-700">
+                <div className="text-sm text-gray-300">You completed <span className="text-white font-medium">Lesson 3</span> in <span className="text-white">Digital Marketing</span></div>
+                <div className="text-xs text-gray-500">2 hours ago</div>
+              </div>
+              <div className="p-3 bg-slate-900/50 rounded border border-slate-700">
+                <div className="text-sm text-gray-300">You enrolled in <span className="text-white font-medium">Figma Design</span></div>
+                <div className="text-xs text-gray-500">Yesterday</div>
+              </div>
+              <div className="p-3 bg-slate-900/50 rounded border border-slate-700">
+                <div className="text-sm text-gray-300">New lesson added to <span className="text-white font-medium">UI/UX Design</span></div>
+                <div className="text-xs text-gray-500">3 days ago</div>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </div>
   )

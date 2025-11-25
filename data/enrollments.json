@@ -1,0 +1,29 @@
+[
+    {
+        "id": "enroll_demo_1",
+        "userId": "student_1",
+        "courseId": 1,
+        "enrolledAt": "2025-11-01T08:00:00.000Z",
+        "progress": 48,
+        "completedVideos": [
+            1,
+            2,
+            5
+        ],
+        "lastAccessed": "2025-11-24T10:00:00.000Z"
+    },
+    {
+        "id": "enroll_demo_2",
+        "userId": "student_1",
+        "courseId": 2,
+        "enrolledAt": "2025-11-05T09:30:00.000Z",
+        "progress": 72,
+        "completedVideos": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "lastAccessed": "2025-11-24T14:00:00.000Z"
+    }
+]

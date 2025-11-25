@@ -35,6 +35,8 @@ export const courses = [
             { id: 3, title: 'Components & Variants', url: 'https://www.youtube.com/embed/k74IrUNaJVk', duration: '25:40', description: 'Reusable components and variants' },
             { id: 4, title: 'Auto Layout Mastery', url: 'https://www.youtube.com/embed/TyaGpGDFczw', duration: '22:20', description: 'Layouts that adapt to content' },
             { id: 5, title: 'Prototyping & Interactions', url: 'https://www.youtube.com/embed/X5qiBwNpgp8', duration: '28:15', description: 'Creating interactive prototypes' },
+            { id: 6, title: 'Design Systems & Tokens', url: 'https://www.youtube.com/watch?v=Hh9Zz2O3d2s', duration: '18:12', description: 'Building scalable design systems' },
+            { id: 7, title: 'Handoff & Developer Collaboration', url: 'https://www.youtube.com/watch?v=7kA1k9f2z2Q', duration: '14:30', description: 'Preparing files for developers and handoff' },
         ],
     },
     {
@@ -49,8 +51,13 @@ export const courses = [
         lessons: [
             { id: 1, title: 'Introduction to UX', url: 'https://www.youtube.com/embed/c9Wg6Cb_YlU', duration: '16:20', description: 'What is UX and why it matters' },
             { id: 2, title: 'User Research Methods', url: 'https://www.youtube.com/embed/WpzmOH0hrEM', duration: '23:45', description: 'Interviews, surveys and analysis' },
-            { id: 3, title: 'Wireframing & Prototyping', url: 'https://www.youtube.com/embed/qpH7-KFWZRI', duration: '25:20', description: 'Low-fi and hi-fi prototypes' },
-            { id: 4, title: 'Usability Testing', url: 'https://www.youtube.com/embed/BrLwlzDZYeU', duration: '24:45', description: 'Planning and running tests' },
+            { id: 3, title: 'Personas & Journey Mapping', url: 'https://www.youtube.com/watch?v=JmK8xK9v3k4', duration: '19:10', description: 'Creating personas and customer journeys' },
+            { id: 4, title: 'Wireframing & Prototyping', url: 'https://www.youtube.com/embed/qpH7-KFWZRI', duration: '25:20', description: 'Low-fi and hi-fi prototypes' },
+            { id: 5, title: 'Interaction Design Principles', url: 'https://www.youtube.com/watch?v=2dA1k9L6p9Q', duration: '21:05', description: 'Designing smooth interactions' },
+            { id: 6, title: 'Visual Design Basics', url: 'https://www.youtube.com/watch?v=Qp3J3j9b1x4', duration: '18:45', description: 'Typography, color and layout' },
+            { id: 7, title: 'Usability Testing', url: 'https://www.youtube.com/embed/BrLwlzDZYeU', duration: '24:45', description: 'Planning and running tests' },
+            { id: 8, title: 'Accessibility Essentials', url: 'https://www.youtube.com/watch?v=F7z6Yb2G3k8', duration: '16:55', description: 'Making inclusive experiences' },
+            { id: 9, title: 'Portfolio & Case Studies', url: 'https://www.youtube.com/watch?v=Kj9m3F2a1sQ', duration: '26:30', description: 'Showcasing your work effectively' },
         ],
     },
 ];
