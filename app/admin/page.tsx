@@ -20,7 +20,7 @@ const adminData = {
     { id: 4, name: "Sedoh Julius", email: "s.julius@gmail.com", courses: 3, status: "completed" },
     { id: 5, name: "Emmanuel Ansah", email: "e.ansah@gmail.com", courses: 1, status: "completed" },
     { id: 6, name: "Portia Munku", email: "p.munku@gmail.com", courses: 2, status: "active" },
-    { id: 7, name: "Christabel Amofa", email: "c.amofa@gmail.com", courses: 2, status: "active" },
+    { id: 7, name: "Christabel Amofa", email: "c.amofa@gmail.com", courses: 2, status: "completed" },
     { id: 8, name: "Emmanuel Amofa", email: "e.amofa@gmai.com", courses: 1, status: "active" },
     { id: 9, name: "Esther Kpeglo", email: "e.kpeglo@gmail.com", courses: 2, status: "active" },
     { id: 10, name: "Khadijah Wiafe", email: "k.wiafe@gmail.com", courses: 3, status: "completed" },
@@ -28,7 +28,7 @@ const adminData = {
     { id: 12, name: "Nsobila Godfred", email: "n.godfred@gmail.com", courses: 2, status: "active" },
     { id: 13, name: "Raphael Anaba", email: "r.anaba@gmail.com", courses: 1, status: "active" },
     { id: 14, name: "Daniella Sackey", email: "d.sackey@gmail.com", courses: 2, status: "active" },
-    { id: 15, name: "Juwell Amankwah", email: "j.amankwah.com", courses: 1, status: "active" },
+    { id: 15, name: "Juwell Amankwah", email: "j.amankwah.com", courses: 1, status: "completed" },
   ],
   mentors: [
     { id: 1, name: "Marcus Johnson", expertise: "Digital Marketing", students: 35 },
