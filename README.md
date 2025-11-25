@@ -113,7 +113,7 @@ The platform uses a sophisticated color palette for an attractive, professional 
 - Beginner-friendly introduction to digital marketing
 - 10 interactive video lessons
 - Learn marketing fundamentals and strategies
-- **Mentor**: Sarah Johnson
+- **Mentor**: Marcus Johnson
 
 ### 2. Figma Design
 - Learn UI/UX design with Figma
@@ -125,7 +125,7 @@ The platform uses a sophisticated color palette for an attractive, professional 
 - Master user interface and experience design
 - 10 comprehensive video tutorials
 - Design beautiful and functional interfaces
-- **Mentor**: Alex Rodriguez
+- **Mentor**: Elena Rodriguez
 
 ## 👥 Team
 
