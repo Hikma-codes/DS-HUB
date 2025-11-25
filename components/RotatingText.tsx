@@ -1,15 +1,15 @@
 "use client"
 
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, AnimatePresence } from "framer-motion"
 
 import "./RotatingText.css"
 
-function cn(...classes) {
+function cn(...classes: any[]) {
   return classes.filter(Boolean).join(" ")
 }
 
-const RotatingText = forwardRef((props, ref) => {
+const RotatingText = forwardRef<any, any>((props, ref) => {
   const {
     texts,
     transition = { type: "spring", damping: 25, stiffness: 300 },

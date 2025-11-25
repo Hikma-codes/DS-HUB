@@ -1,0 +1,58 @@
+export const courses = [
+    {
+        id: 1,
+        title: 'Digital Marketing',
+        description: 'Learn the fundamentals of digital marketing: SEO, social media, content, email, ads and analytics.',
+        mentor: 'Sarah Johnson',
+        level: 'Beginner',
+        duration: '8 weeks',
+        students: 156,
+        rating: 4.8,
+        lessons: [
+            { id: 1, title: 'Introduction to Digital Marketing', url: 'https://www.youtube.com/watch?v=BZLUEKnMfIY', duration: '8:52:07', description: 'Course overview and road map' },
+            { id: 2, title: 'SEO Fundamentals', url: 'https://www.youtube.com/watch?v=xsVTqzratPs', duration: '1:57:02', description: 'Keyword research, on-page and off-page SEO' },
+            { id: 3, title: 'Social Media Strategy', url: 'https://www.youtube.com/watch?v=i7MrqwbmN4Y', duration: '7:36:35', description: 'Building content calendars and growth tactics' },
+            { id: 4, title: 'Content Marketing Essentials', url: 'https://www.youtube.com/watch?v=0BRO25Fj91U', duration: '1:15:35', description: 'Creating content that converts' },
+            { id: 5, title: 'Email Marketing Campaigns', url: 'https://www.youtube.com/watch?v=DvwUgqX3ZF4', duration: '3:10:23', description: 'Segmentation, flows and performance' },
+            { id: 6, title: 'Google Ads Basics', url: 'https://www.youtube.com/watch?v=a-JmhK9nKJk', duration: '1:00:59', description: 'Search and display fundamentals' },
+            { id: 7, title: 'Facebook & Instagram Ads', url: 'https://www.youtube.com/watch?v=8LBrajllEPk', duration: '34:33', description: 'Audience targeting and creative' },
+            { id: 8, title: 'Analytics & Measurement', url: 'https://www.youtube.com/watch?v=KdSxujyEBZQ&t=55s', duration: '1:26:41', description: 'Using analytics to improve ROI' },
+            { id: 9, title: 'AI Automations for Marketing', url: 'https://www.youtube.com/watch?v=5TxSqvPbnWw&t=146s', duration: '1:50:22', description: 'Practical automation examples' },
+        ],
+    },
+    {
+        id: 2,
+        title: 'Figma Design',
+        description: 'Master Figma: wireframes, components, prototyping and design systems.',
+        mentor: 'Sarah Chen',
+        level: 'Beginner',
+        duration: '6 weeks',
+        students: 203,
+        rating: 4.9,
+        lessons: [
+            { id: 1, title: 'Figma Interface & Tools', url: 'https://www.youtube.com/embed/dXQ7IHkTiMM', duration: '12:45', description: 'Overview of the Figma workspace' },
+            { id: 2, title: 'Frames & Layouts', url: 'https://www.youtube.com/embed/wvFd-z7jSaA', duration: '20:15', description: 'Creating responsive layouts and frames' },
+            { id: 3, title: 'Components & Variants', url: 'https://www.youtube.com/embed/k74IrUNaJVk', duration: '25:40', description: 'Reusable components and variants' },
+            { id: 4, title: 'Auto Layout Mastery', url: 'https://www.youtube.com/embed/TyaGpGDFczw', duration: '22:20', description: 'Layouts that adapt to content' },
+            { id: 5, title: 'Prototyping & Interactions', url: 'https://www.youtube.com/embed/X5qiBwNpgp8', duration: '28:15', description: 'Creating interactive prototypes' },
+        ],
+    },
+    {
+        id: 3,
+        title: 'UI/UX Design',
+        description: 'User research, wireframing, prototyping, usability testing and portfolios.',
+        mentor: 'Alex Rodriguez',
+        level: 'Beginner',
+        duration: '10 weeks',
+        students: 187,
+        rating: 4.7,
+        lessons: [
+            { id: 1, title: 'Introduction to UX', url: 'https://www.youtube.com/embed/c9Wg6Cb_YlU', duration: '16:20', description: 'What is UX and why it matters' },
+            { id: 2, title: 'User Research Methods', url: 'https://www.youtube.com/embed/WpzmOH0hrEM', duration: '23:45', description: 'Interviews, surveys and analysis' },
+            { id: 3, title: 'Wireframing & Prototyping', url: 'https://www.youtube.com/embed/qpH7-KFWZRI', duration: '25:20', description: 'Low-fi and hi-fi prototypes' },
+            { id: 4, title: 'Usability Testing', url: 'https://www.youtube.com/embed/BrLwlzDZYeU', duration: '24:45', description: 'Planning and running tests' },
+        ],
+    },
+];
+
+export default courses;
