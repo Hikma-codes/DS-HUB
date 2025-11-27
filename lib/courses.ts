@@ -6,7 +6,7 @@ export const courses = [
         mentor: 'Marcus Johnson',
         level: 'Beginner',
         duration: '8 weeks',
-        students: 156,
+        students: 12,
         rating: 4.8,
         lessons: [
             { id: 1, title: 'Introduction to Digital Marketing', url: 'https://www.youtube.com/watch?v=BZLUEKnMfIY', duration: '8:52:07', description: 'Course overview and road map' },
@@ -27,7 +27,7 @@ export const courses = [
         mentor: 'Sarah Chen',
         level: 'Beginner',
         duration: '6 weeks',
-        students: 203,
+        students: 10,
         rating: 4.9,
         lessons: [
             { id: 1, title: 'Figma Interface & Tools', url: 'https://www.youtube.com/embed/dXQ7IHkTiMM', duration: '12:45', description: 'Overview of the Figma workspace' },
@@ -46,7 +46,7 @@ export const courses = [
         mentor: 'Alex Rodriguez',
         level: 'Beginner',
         duration: '10 weeks',
-        students: 187,
+        students: 13,
         rating: 4.7,
         lessons: [
             { id: 1, title: 'Introduction to UX', url: 'https://www.youtube.com/embed/c9Wg6Cb_YlU', duration: '16:20', description: 'What is UX and why it matters' },
