@@ -2,9 +2,8 @@
 
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Users, Settings, AlertCircle, CheckCircle } from 'lucide-react'
+import { ArrowLeft, Settings, Users } from 'lucide-react'
 
 const adminData = {
   admin: {
@@ -14,21 +13,21 @@ const adminData = {
     role: "Platform Founder & Admin"
   },
   users: [
-    { id: 1, name: "Esi Micah", email: "e.micah@gmail.com", courses: 2, status: "active" },
-    { id: 2, name: "Stephanie Danso", email: "s.danso@gmail.com", courses: 1, status: "active" },
-    { id: 3, name: "Cecil Essel", email: "c.essel@gmail.com", courses: 1, status: "active" },
-    { id: 4, name: "Sedoh Julius", email: "s.julius@gmail.com", courses: 3, status: "completed" },
-    { id: 5, name: "Emmanuel Ansah", email: "e.ansah@gmail.com", courses: 1, status: "completed" },
-    { id: 6, name: "Portia Munku", email: "p.munku@gmail.com", courses: 2, status: "active" },
-    { id: 7, name: "Christabel Amofa", email: "c.amofa@gmail.com", courses: 2, status: "completed" },
-    { id: 8, name: "Emmanuel Amofa", email: "e.amofa@gmai.com", courses: 1, status: "active" },
-    { id: 9, name: "Esther Kpeglo", email: "e.kpeglo@gmail.com", courses: 2, status: "active" },
-    { id: 10, name: "Khadijah Wiafe", email: "k.wiafe@gmail.com", courses: 3, status: "completed" },
-    { id: 11, name: "Isabella Biney", email: "i.biney@gmail.com", courses: 1, status: "active" },
-    { id: 12, name: "Nsobila Godfred", email: "n.godfred@gmail.com", courses: 2, status: "active" },
-    { id: 13, name: "Raphael Anaba", email: "r.anaba@gmail.com", courses: 1, status: "active" },
-    { id: 14, name: "Daniella Sackey", email: "d.sackey@gmail.com", courses: 2, status: "active" },
-    { id: 15, name: "Juwell Amankwah", email: "j.amankwah.com", courses: 1, status: "completed" },
+    { id: 1, name: "Esi Micah", email: "e.micah@gmail.com", courses: 2, progress: 40, status: "active" },
+    { id: 2, name: "Stephanie Danso", email: "s.danso@gmail.com", courses: 1, progress: 100, status: "completed" },
+    { id: 3, name: "Cecil Essel", email: "c.essel@gmail.com", courses: 1, progress: 50, status: "active" },
+    { id: 4, name: "Sedoh Julius", email: "s.julius@gmail.com", courses: 3, progress: 100, status: "completed" },
+    { id: 5, name: "Emmanuel Ansah", email: "e.ansah@gmail.com", courses: 1, progress: 100, status: "completed" },
+    { id: 6, name: "Portia Munku", email: "p.munku@gmail.com", courses: 2, progress: 60, status: "active" },
+    { id: 7, name: "Christabel Amofa", email: "c.amofa@gmail.com", courses: 2, progress: 100, status: "completed" },
+    { id: 8, name: "Emmanuel Amofa", email: "e.amofa@gmai.com", courses: 1, progress: 30, status: "active" },
+    { id: 9, name: "Esther Kpeglo", email: "e.kpeglo@gmail.com", courses: 2, progress: 50, status: "active" },
+    { id: 10, name: "Khadijah Wiafe", email: "k.wiafe@gmail.com", courses: 3, progress: 100, status: "completed" },
+    { id: 11, name: "Isabella Biney", email: "i.biney@gmail.com", courses: 1, progress: 20, status: "active" },
+    { id: 12, name: "Nsobila Godfred", email: "n.godfred@gmail.com", courses: 2, progress: 70, status: "active" },
+    { id: 13, name: "Raphael Anaba", email: "r.anaba@gmail.com", courses: 1, progress: 50, status: "active" },
+    { id: 14, name: "Daniella Sackey", email: "d.sackey@gmail.com", courses: 2, progress: 60, status: "active" },
+    { id: 15, name: "Juwell Amankwah", email: "j.amankwah.com", courses: 1, progress: 100, status: "completed" },
   ],
   mentors: [
     { id: 1, name: "Marcus Johnson", expertise: "Digital Marketing", students: 12 },
@@ -38,20 +37,25 @@ const adminData = {
 }
 
 export default function AdminPage() {
-  return (
-    <div className="min-h-screen bg-black text-white py-20 px-4 md:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <Link href="/" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8">
-          <ArrowLeft size={20} />
-          Back to Home
-        </Link>
+  // Calculate quick stats
+  const totalUsers = adminData.users.length
+  const activeUsers = adminData.users.filter(u => u.status === "active").length
+  const completedUsers = adminData.users.filter(u => u.status === "completed").length
 
-        <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
+  return (
+    <div className="min-h-screen bg-black text-white py-12 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+          <Link href="/" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300">
+            <ArrowLeft size={20} />
+            Back to Home
+          </Link>
+          <h1 className="text-4xl font-bold">Admin Dashboard</h1>
+        </div>
 
         {/* Admin Info */}
-        <Card className="bg-[#F5A300]/20 border-[#F5A300] mb-8">
-
+        <Card className="bg-[#F5A300]/20 border-[#F5A300]">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Settings size={24} />
@@ -59,7 +63,7 @@ export default function AdminPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div>
                 <p className="text-gray-400 text-sm">Name</p>
                 <p className="text-white font-medium">{adminData.admin.name}</p>
@@ -75,59 +79,97 @@ export default function AdminPage() {
               <div>
                 <p className="text-gray-400 text-sm">Role</p>
                 <Badge className="bg-[#F5A300] text-black">{adminData.admin.role}</Badge>
-
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Mentors List */}
-          <Card className="bg-slate-900/50 border-slate-700">
-            <CardHeader>
-              <CardTitle className="text-white">Mentors</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {adminData.mentors.map((mentor) => (
-                  <div key={mentor.id} className="pb-4 border-b border-slate-700 last:border-0">
-                    <h3 className="text-white font-medium">{mentor.name}</h3>
-                    <p className="text-sm text-blue-400">{mentor.expertise}</p>
-                    <p className="text-xs text-gray-400 mt-1">{mentor.students} students</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
+        {/* Quick Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="bg-slate-900/50 border-slate-700 p-4 flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Total Users</p>
+              <p className="text-white text-2xl font-bold">{totalUsers}</p>
+            </div>
+            <Users size={40} className="text-blue-400" />
           </Card>
+          <Card className="bg-slate-900/50 border-slate-700 p-4 flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Active Users</p>
+              <p className="text-white text-2xl font-bold">{activeUsers}</p>
+            </div>
+            <Users size={40} className="text-green-400" />
+          </Card>
+          <Card className="bg-slate-900/50 border-slate-700 p-4 flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Completed Users</p>
+              <p className="text-white text-2xl font-bold">{completedUsers}</p>
+            </div>
+            <Users size={40} className="text-yellow-400" />
+          </Card>
+        </div>
 
-          {/* Users List */}
-          <div className="lg:col-span-2">
-            <Card className="bg-slate-900/50 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white">Enrolled Users ({adminData.users.length})</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="max-h-96 overflow-y-auto space-y-2">
+        {/* Users Table */}
+        <Card className="bg-slate-900/50 border-slate-700">
+          <CardHeader>
+            <CardTitle className="text-white">User Progress Overview</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-left">
+                <thead className="border-b border-gray-700">
+                  <tr>
+                    <th className="px-4 py-2 text-gray-400">Name</th>
+                    <th className="px-4 py-2 text-gray-400">Email</th>
+                    <th className="px-4 py-2 text-gray-400">Courses Enrolled</th>
+                    <th className="px-4 py-2 text-gray-400">Progress</th>
+                    <th className="px-4 py-2 text-gray-400">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {adminData.users.map((user) => (
-                    <div key={user.id} className="flex items-center justify-between p-3 bg-slate-800/50 rounded border border-slate-700">
-                      <div className="flex-1">
-                        <p className="text-white text-sm font-medium">{user.name}</p>
-                        <p className="text-xs text-gray-400">{user.email}</p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-400">{user.courses} courses</span>
+                    <tr key={user.id} className="border-b border-gray-700 hover:bg-slate-800/30 transition">
+                      <td className="px-4 py-2">{user.name}</td>
+                      <td className="px-4 py-2 text-blue-400">{user.email}</td>
+                      <td className="px-4 py-2">{user.courses}</td>
+                      <td className="px-4 py-2">
+                        <div className="bg-gray-700/40 rounded h-2 w-full">
+                          <div
+                            className="bg-green-500 h-2 rounded transition-all duration-500"
+                            style={{ width: `${user.progress}%` }}
+                          ></div>
+                        </div>
+                        <p className="text-xs text-gray-400 mt-1">{user.progress}%</p>
+                      </td>
+                      <td className="px-4 py-2">
                         {user.status === "completed" ? (
                           <Badge className="bg-green-900/30 text-green-300 text-xs">Completed</Badge>
                         ) : (
                           <Badge className="bg-blue-900/30 text-blue-300 text-xs">Active</Badge>
                         )}
-                      </div>
-                    </div>
+                      </td>
+                    </tr>
                   ))}
-                </div>
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Mentors */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {adminData.mentors.map((mentor) => (
+            <Card key={mentor.id} className="bg-slate-900/50 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-white">{mentor.name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-400 text-sm">Expertise</p>
+                <p className="text-blue-400">{mentor.expertise}</p>
+                <p className="text-gray-400 text-xs mt-1">{mentor.students} students</p>
               </CardContent>
             </Card>
-          </div>
+          ))}
         </div>
       </div>
     </div>

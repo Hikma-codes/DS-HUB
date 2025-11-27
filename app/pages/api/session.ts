@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createSession, deleteSession, verifyAuth } from '@/lib/authMiddleware'
+import { createSession, deleteSession, verifyAuth } from '@/lib/authMiddleware',
 
 export async function POST(request: NextRequest) {
     try {
