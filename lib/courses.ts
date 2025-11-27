@@ -3,7 +3,7 @@ export const courses = [
         id: 1,
         title: 'Digital Marketing',
         description: 'Learn the fundamentals of digital marketing: SEO, social media, content, email, ads and analytics.',
-        mentor: 'Sarah Johnson',
+        mentor: 'Marcus Johnson',
         level: 'Beginner',
         duration: '8 weeks',
         students: 156,

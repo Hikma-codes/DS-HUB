@@ -20,7 +20,7 @@ export default function DashboardPage() {
   const [userId, setUserId] = useState<string | null>("student_1");
   const [profileName, setProfileName] = useState<string | null>("Esi Micah");
   const [profileImage] = useState<string>(
-    "https://i.ibb.co/qNcyyJv/woman-avatar.jpg" // sample avatar
+    "https://genderhealthdata.org/wp-content/uploads/2022/09/African-female-youth-1024x678.jpg" 
   );
   const [enrollments, setEnrollments] = useState<Enrollment[]>([]);
   const [loading, setLoading] = useState(false);
@@ -72,7 +72,7 @@ export default function DashboardPage() {
             <img
               src={profileImage}
               alt="Profile"
-              className="w-16 h-16 rounded-full border-2"
+              className="w-25 h-25 rounded-full border-2"
               style={{ borderColor: GOLD }}
             />
 
@@ -210,15 +210,15 @@ export default function DashboardPage() {
               You enrolled in{" "}
               <span className="text-yellow-400">Figma Design</span>.
             </p>
-            <p className="text-xs text-gray-400">Yesterday</p>
+            <p className="text-xs text-gray-400">Last week</p>
           </div>
 
           <div className="p-3 bg-[#111] border border-[#222] rounded">
             <p className="text-sm">
-              New lesson added to{" "}
+              Incase you'd like to explore our third course{" "}
               <span className="text-yellow-400">UI/UX Design</span>.
             </p>
-            <p className="text-xs text-gray-400">3 days ago</p>
+            <p className="text-xs text-gray-400"></p>
           </div>
         </div>
       </div>
