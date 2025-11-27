@@ -1,8 +1,217 @@
+# DS-HUB (Digital Skills Hub)
+
+This repository is a Next.js + TypeScript learning platform (front-end + lightweight backend API shims). The app uses the App Router (`app/`) and includes client components, server API routes, and a small file-backed data store used for local development.
+
+This README explains every step needed to get the project running locally on Windows (PowerShell), how the important parts are wired, and where to make common edits.
+
+---
+
+## Table of contents
+- **Requirements**
+- **Quick Start (copy/paste)**
+- **Project structure (important files)**
+- **Local development: detailed steps**
+- **Environment & secrets**
+- **Seed data and persistence**
+- **How lesson playback & auto-complete works**
+- **Deploy / Prod notes**
+- **Troubleshooting**
+- **Contributing**
+
+---
+
+## Requirements
+- Node.js 18+ (LTS recommended)
+- npm (bundled with Node) or pnpm/yarn if you prefer (commands below use `npm`)
+- Windows PowerShell (these instructions use PowerShell syntax)
+
+Optional for production:
+- PostgreSQL / Supabase account (if you want persistent DB replacement for the local file store)
+
+---
+
+## Quick Start (copy/paste)
+Open PowerShell in the project root (`C:\Users\USER\Downloads\DSH_code`) and run:
+
+```powershell
+# Install dependencies
+npm install
+
+
+# Start dev server (Next.js)
+npm run dev
+
+# Open http://localhost:3000 in your browser
+```
+
+Notes:
+- The dev server will default to port `3000` (Next will pick another port if 3000 is taken).
+- If you want to stop the server press `Ctrl+C`.
+
+---
+
+## Project structure (important files)
+- `app/` — Next.js App Router pages and API routes. Look in `app/api/*` for App Router APIs.
+- `components/` — React components used by the UI. Key files:
+  - `components/course-player.tsx` — lesson player, list, progress UI, auto-complete on video end.
+  - `components/courses-section.tsx` — course listing / preview UI.
+- `lib/` — helper modules and data:
+  - `lib/courses.ts` — canonical course + lesson data (title, `url`, `duration`, descriptions). Update lesson links/durations here.
+  - `lib/dbStore.ts` — small file-backed helper used by server routes for enrollments (local dev).
+  - `lib/authMiddleware.ts` — basic in-memory session helpers used for sessions.
+  - `lib/supabase/server.ts` — a lightweight shim (replace with real Supabase client in production).
+- `data/enrollments.json` — seeded demo enrollments used when running locally.
+- `app/api/enrollment` — App Router API (`route.ts`) for enrollments (GET/POST/PUT).
+- `app/api/session` — App Router API to create/delete sessions.
+- `app/api/progress/route.ts` — progress POST shim (client reports progress here).
+
+---
+
+## Local development: detailed steps
+
+1. Clone or open the repo (you already have it on disk):
+
+```powershell
+cd C:\Users\USER\Downloads\DSH_code
+```
+
+2. Install dependencies:
+
+```powershell
+npm install
+```
+
+3. (Optional) Run TypeScript check:
+
+```powershell
+npx tsc --noEmit
+```
+
+4. Start the Next dev server:
+
+```powershell
+npm run dev
+```
+
+5. Open the browser to `http://localhost:3000`.
+
+6. Student dashboard & user:
+- Go to `http://localhost:3000/dashboard`.
+- If no demo session exists, click one of the quick demo buttons (e.g. `Esi`). That calls `/api/session` and sets a demo server session cookie for local testing.
+- The dashboard uses `data/enrollments.json` seeded data so the dashboard shows active progress.
+
+7. Playing lessons:
+- Open a course page (click Continue on a course card or go to `/course/1`).
+- Lessons with YouTube links will use the YouTube IFrame API. When you watch a video to the end the CoursePlayer will mark that lesson complete automatically and persist progress to `localStorage` and POST to `/api/progress`.
+
+---
+
+## Environment & secrets
+
+- A `.env.local` file is intentionally in `.gitignore`. For local development you usually do not need any environment variables for the setup. If you integrate a real DB or Supabase you will add credentials to `.env.local`.
+
+Suggested `.env.local` keys for production integration (example):
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=secret_key_here
+DATABASE_URL=postgres://user:pass@host:5432/dbname
+ALLOWED_ORIGIN=http://localhost:3000
+```
+
+If you add them, restart the dev server.
+
+---
+
+## Seed data and persistence
+
+- This project uses a file-backed store for enrollments in `data/enrollments.json` (local dev). `lib/dbStore.ts` reads/writes that file.
+- To reset data, edit or replace `data/enrollments.json` while the server is stopped.
+- For production persistence, replace calls to `lib/dbStore` in the API routes with a connection to your DB (Supabase or Postgres). The DB schema is provided in `lib/db.ts` as SQL snippets you can run/migrate.
+
+---
+
+## How lesson playback & auto-complete works
+
+- `components/course-player.tsx` does the following:
+  - Renders a lesson list and an embedded player (YouTube or raw iframe).
+  - For YouTube links it uses the YouTube IFrame API (script loaded dynamically). When the player fires `onStateChange` and reaches `ENDED`, the component marks the lesson complete.
+  - Completed lesson IDs are stored in `localStorage` under `course-progress-{courseId}`.
+  - When progress changes the player POSTs a best-effort payload to `/api/progress` (currently a shim that logs the payload).
+
+Important: the manual checkbox is disabled in the current version to prevent manual cheating — completion is automatic from the player.
+
+---
+
+## Deploy / Production notes
+
+- This repository is set up for local development. For production you should:
+ 1. Replace `lib/supabase/server.ts` (the shim) with a real Supabase client or connect to a Postgres DB.
+ 2. Move session storage from the in-memory map in `lib/authMiddleware.ts` to a DB or Redis-backed store.
+ 3. Replace the `data/enrollments.json` file store with DB persistence and update `app/api/enrollment/route.ts` to use the DB.
+ 4. Ensure `ALLOWED_ORIGIN` and other environment variables are set correctly.
+ 5. Use a proper build step: `npm run build` and a Node server or Vercel/Netlify for deployment.
+
+---
+
+## Troubleshooting
+
+- Dev server doesn't start / shows compilation errors:
+  - Run `npx tsc --noEmit` to surface TypeScript issues.
+  - Check the terminal where `npm run dev` was started — Next shows compile-time and runtime errors there.
+
+- IFrame / YouTube player not loading:
+  - Make sure lesson `url` values in `lib/courses.ts` are valid YouTube `watch?v=...`, `embed/...` or `youtu.be` links. The code parses these formats.
+  - Check browser console for mixed-content or blocked script errors.
+
+- Changes don't appear in GitHub Desktop or repo UI:
+  - Ensure you're editing files in the repository path `C:\Users\USER\Downloads\DSH_code` and that GitHub Desktop is pointed at the same path.
+  - Run `git status` in PowerShell to confirm changed files.
+
+- Session endpoints returning 404:
+  - There are two API variants in this project: App Router (`app/api/.../route.ts`) and legacy Pages API (`app/pages/api/...`). The dev server compiles App Router endpoints under `app/api/*` and copies some legacy APIs to `.next`. Ensure you call the App Router routes (e.g., `/api/session` and `/api/enrollment`) which are implemented under `app/api` *and* `app/api` should be used by the app pages. If you added/modified endpoints under `app/pages/api`, they might not be used by the App Router pages.
+
+---
+
+## Editing lessons & durations
+
+- Source of truth: `lib/courses.ts`.
+  - Each lesson object has the shape: `{ id: number, title: string, url: string, duration?: string, description?: string }`.
+  - Edit a lesson `url` or `duration` there and refresh the app.
+
+Example: change the duration of the Figma lesson
+
+```ts
+// lib/courses.ts
+// find the course and the lesson entry and update `duration`
+```
+
+---
+
+## Git & pushing changes (quick)
+
+```powershell
+git status
+git add .
+git commit -m "Describe your changes"
+git push origin main
+```
+
+If the remote rejects the push because the remote has commits, pull first then push:
+
+```powershell
+git pull --rebase origin main
+git push origin main
+```
+
+---
+
+Credits: This README was generated to match the current project layout and the local development setup on Windows PowerShell.
 # Digital Skills Hub (DSH)
 
 A modern, fully responsive course and mentorship learning platform built to provide beginner-friendly digital education. Digital Skills Hub offers three core courses with interactive video lessons, user enrollment, mentorship tracking, and admin dashboard management.
 
-## 🎯 Project Overview
+##  Project Overview
 
 Digital Skills Hub is a complete learning management system designed for aspiring digital professionals. It provides:
 
@@ -12,36 +221,35 @@ Digital Skills Hub is a complete learning management system designed for aspirin
 - **User Dashboard**: Track your learning progress and enrolled courses
 - **Admin Dashboard**: Manage users, courses, mentors, and platform analytics
 - **Feedback System**: Collect valuable student feedback about courses and learning experience
-- **Responsive Design**: Optimized for mobile, tablet, and desktop devices
 
-## 📊 Features
+##  Features
 
 ### For Learners
-- ✅ Browse and enroll in courses (completely free)
-- ✅ Watch course videos and track progress
-- ✅ Access personalized user dashboard
-- ✅ View mentor profiles and expertise
-- ✅ Submit feedback on courses and platform
-- ✅ Secure sign-up and authentication
+-  Browse and enroll in courses (completely free)
+-  Watch course videos and track progress
+-  Access personalized user dashboard
+-  View mentor profiles and expertise
+-  Submit feedback on courses and platform
+-  Secure sign-up and authentication
 
 ### For Mentors
-- ✅ Manage assigned courses
-- ✅ Track student progress
-- ✅ Provide guidance and mentorship
-- ✅ View analytics on student engagement
+- Manage assigned courses
+- Track student progress
+- Provide guidance and mentorship
+- View analytics on student engagement
 
 ### For Administrators
-- ✅ Complete admin dashboard with analytics
-- ✅ User management (view all enrolled students)
-- ✅ Course management and monitoring
-- ✅ Mentor management
-- ✅ Feedback analytics
-- ✅ System statistics and insights
+-  Complete admin dashboard with analytics
+-  User management (view all enrolled students)
+-  Course management and monitoring
+-  Mentor management
+-  Feedback analytics
+-  System statistics and insights
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
-- **Framework**: Next.js 14 (React 19)
+- **Framework**: Next.js 14
 - **Styling**: Tailwind CSS 4 with custom animations
 - **UI Components**: Radix UI, shadcn/ui
 - **Form Handling**: React Hook Form with Zod validation
@@ -65,7 +273,7 @@ Digital Skills Hub is a complete learning management system designed for aspirin
 - **Player**: Native browser video player
 - **Video Service**: YouTube course videos for each course
 
-## 📁 Project Structure
+##  Project Structure
 
 \`\`\`
 digital-skills-hub/
@@ -90,14 +298,14 @@ digital-skills-hub/
 │   ├── ui/                         # shadcn/ui components
 │   └── [...other components]
 ├── public/
-│   └── images/                     # Static images
+│   └── images/                     # Images
 ├── package.json                    # Project dependencies
 ├── tsconfig.json                   # TypeScript configuration
 ├── tailwind.config.ts              # Tailwind CSS configuration
 └── next.config.mjs                 # Next.js configuration
 \`\`\`
 
-## 🎨 Color Scheme
+##  Color Scheme
 
 The platform uses a sophisticated color palette for an attractive, professional appearance:
 
@@ -107,7 +315,7 @@ The platform uses a sophisticated color palette for an attractive, professional 
 - **Text**: White/Light Gray - #FFFFFF, #E5E7EB
 - **Accents**: Green and Golden Yellow combinations
 
-## 📚 Available Courses
+##  Available Courses
 
 ### 1. Digital Marketing
 - Beginner-friendly introduction to digital marketing
@@ -145,7 +353,7 @@ The platform uses a sophisticated color palette for an attractive, professional 
 - Diverse backgrounds and skill levels
 - Engaging with courses and providing feedback
 
-## 🚀 Key Features Explained
+##  Key Features Explained
 
 ### User Authentication
 - Sign-up with email and password
@@ -179,22 +387,8 @@ The platform uses a sophisticated color palette for an attractive, professional 
 - Learning effectiveness scores
 - Feedback sent to admin email
 
-## 📱 Responsive Design
 
-The platform is fully responsive and optimized for:
-- **Mobile Devices**: 375px - 640px
-- **Tablets**: 641px - 1024px
-- **Desktop**: 1025px and above
-- **Large Screens**: 1440px+
-
-All pages adapt beautifully to different screen sizes with:
-- Touch-friendly buttons and forms
-- Optimized navigation for mobile
-- Readable font sizes
-- Proper spacing and layout
-- Fast loading times
-
-## 🔐 Data Security
+##  Data Security
 
 - User data stored in browser localStorage
 - Password validation and confirmation
@@ -202,13 +396,13 @@ All pages adapt beautifully to different screen sizes with:
 - Protected admin dashboard
 - Feedback data transmitted securely
 
-## 📧 Contact & Support
+## Contact & Support
 
 For support, inquiries, or feedback:
 - **Email**: hamzahikma9@gmail.com
 - **Phone**: +250794414171
 
-## 📄 License
+##  License
 
 All Rights Reserved © Digital Skills Hub
 Developed by Hikma Hamza
