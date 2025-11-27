@@ -1,7 +1,7 @@
 export const courses = [
     {
         id: 1,
-        title: 'Digital Marketing',
+        title: 'Digital Marketing ',
         description: 'Learn the fundamentals of digital marketing: SEO, social media, content, email, ads and analytics.',
         mentor: 'Marcus Johnson',
         level: 'Beginner',
@@ -30,7 +30,7 @@ export const courses = [
         students: 10,
         rating: 4.9,
         lessons: [
-            { id: 1, title: 'Figma Interface & Tools', url: 'https://www.youtube.com/embed/dXQ7IHkTiMM', duration: '12:45', description: 'Overview of the Figma workspace' },
+            { id: 1, title: 'Figma Interface & Tools', url: 'https://www.youtube.com/embed/dXQ7IHkTiMM', duration: '15:49', description: 'Overview of the Figma workspace' },
             { id: 2, title: 'Frames & Layouts', url: 'https://www.youtube.com/embed/wvFd-z7jSaA', duration: '20:15', description: 'Creating responsive layouts and frames' },
             { id: 3, title: 'Components & Variants', url: 'https://www.youtube.com/embed/k74IrUNaJVk', duration: '25:40', description: 'Reusable components and variants' },
             { id: 4, title: 'Auto Layout Mastery', url: 'https://www.youtube.com/embed/TyaGpGDFczw', duration: '22:20', description: 'Layouts that adapt to content' },
@@ -43,7 +43,7 @@ export const courses = [
         id: 3,
         title: 'UI/UX Design',
         description: 'User research, wireframing, prototyping, usability testing and portfolios.',
-        mentor: 'Alex Rodriguez',
+        mentor: 'Elena Rodriguez',
         level: 'Beginner',
         duration: '10 weeks',
         students: 13,

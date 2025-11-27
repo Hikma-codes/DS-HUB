@@ -68,7 +68,7 @@ export function HeroSection() {
             className="bg-white text-black rounded-full px-8 py-4 text-lg font-medium transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-lg group cursor-pointer relative overflow-hidden"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            Sign Up Now
+            BE MORE
             <ArrowRight />
           </Button>
 
@@ -84,7 +84,7 @@ export function HeroSection() {
             }}
           >
             <Play />
-            View Courses
+            VIEW COURSES
           </Button>
         </div>
       </div>

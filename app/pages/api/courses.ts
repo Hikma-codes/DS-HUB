@@ -12,7 +12,6 @@ const courses = [
         mentorBio: "10+ years of experience in digital marketing strategy and execution",
         level: "Beginner",
         duration: "8 weeks",
-        students: 156,
         rating: 4.8,
         videos: [
             { id: 1, title: "Digital Marketing Full Course 2026 | Digital Marketing Tutorial For Beginners | Simplilearn", url: "https://www.youtube.com/watch?v=BZLUEKnMfIY", duration: "8:52:07" },
@@ -37,19 +36,18 @@ const courses = [
         mentorBio: "Senior product designer with expertise in design systems and prototyping",
         level: "Beginner",
         duration: "6 weeks",
-        students: 203,
         rating: 4.9,
         videos: [
             { id: 1, title: "Introduction to Figma", url: "https://www.youtube.com/embed/dXQ7IHkTiMM", duration: "12:45" },
-            { id: 2, title: "Figma Interface & Tools", url: "https://www.youtube.com/embed/Cx2dkpBxst8", duration: "18:30" },
+            { id: 2, title: "Figma Interface & Tools", url: "https://www.youtube.com/watch?v=GrZZuv2m2_0", duration: "7:07" },
             { id: 3, title: "Creating Frames & Layouts", url: "https://www.youtube.com/embed/wvFd-z7jSaA", duration: "20:15" },
             { id: 4, title: "Working with Components", url: "https://www.youtube.com/embed/k74IrUNaJVk", duration: "25:40" },
             { id: 5, title: "Auto Layout Mastery", url: "https://www.youtube.com/embed/TyaGpGDFczw", duration: "22:20" },
             { id: 6, title: "Prototyping & Interactions", url: "https://www.youtube.com/embed/k1iwiHJrAWI?si=sNhVem_J6Srp8D0m", duration: "20:35" },
             { id: 7, title: "Design Systems in Figma", url: "https://www.youtube.com/embed/Dtd40cHQQlk", duration: "30:45" },
-         ],
-        
-         topics: ["Interface Design", "Prototyping", "Components", "Auto Layout", "Design Systems"],
+        ],
+
+        topics: ["Interface Design", "Prototyping", "Components", "Auto Layout", "Design Systems"],
         requirements: ["Computer with internet", "Figma account (free)", "Basic design sense"]
     },
     {
@@ -61,7 +59,6 @@ const courses = [
         mentorBio: "Lead UX designer with 8+ years creating user-centered digital experiences",
         level: "Beginner",
         duration: "10 weeks",
-        students: 187,
         rating: 4.7,
         videos: [
             { id: 1, title: "Introduction to UX", url: "https://www.youtube.com/embed/c9Wg6Cb_YlU", duration: "1:26:21" },

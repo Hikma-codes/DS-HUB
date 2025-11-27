@@ -5,36 +5,36 @@ import { Badge } from "@/components/ui/badge"
 import { Award, Mail, Phone } from 'lucide-react'
 
 const mentors = [
-  { 
-    name: "Sarah Chen", 
-    expertise: "Figma Design", 
-    students: 28, 
-    certifications: "UX/UI Specialist",
-    email: "sarah.chen@digitalskillshub.com",
+  {
+    name: "Sarah Chen",
+    expertise: "Figma Design",
+    students: 10,
+    certifications: "Figma Design Specialist",
+    email: "s.chen@digitalskillshub.com",
     phone: "+1-555-0101"
   },
-  { 
-    name: "Marcus Johnson", 
-    expertise: "Digital Marketing", 
-    students: 35, 
+  {
+    name: "Marcus Johnson",
+    expertise: "Digital Marketing",
+    students: 12,
     certifications: "Certified Digital Marketing Expert",
     email: "marcus.j@digitalskillshub.com",
     phone: "+1-555-0102"
   },
-  { 
-    name: "Elena Rodriguez", 
-    expertise: "UI/UX Design", 
-    students: 31, 
-    certifications: "Product Design Specialist",
+  {
+    name: "Elena Rodriguez",
+    expertise: "UI/UX Design",
+    students: 13,
+    certifications: "UI/UX Specialist",
     email: "elena.r@digitalskillshub.com",
     phone: "+1-555-0103"
   },
 ]
 
 const admins = [
-  { 
-    name: "Hikma Hamza", 
-    role: "Platform Founder & Instructor", 
+  {
+    name: "Hikma Hamza",
+    role: "Platform Founder & Instructor",
     email: "hamzahikma9@gmail.com",
     phone: "+250794414171"
   },
@@ -55,12 +55,17 @@ export function MentorsSection() {
         {/* Admin Section */}
         <div className="mb-16">
           <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
-            <Badge className="bg-purple-600">FOUNDER</Badge>
+            <Badge className="bg-[#F5A300] text-black">FOUNDER</Badge>
+
             Platform Leadership
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
             {admins.map((admin, idx) => (
-              <Card key={idx} className="bg-purple-900/20 border-purple-700 hover:border-purple-500 transition-all">
+              <Card
+                key={idx}
+                className="bg-[#F5A300]/10 border-[#F5A300] hover:border-[#F5A300]/70 transition-all"
+              >
+
                 <CardHeader>
                   <CardTitle className="text-white">{admin.name}</CardTitle>
                   <p className="text-sm text-gray-300">{admin.role}</p>
@@ -96,7 +101,7 @@ export function MentorsSection() {
                 <CardContent className="space-y-3">
                   <div className="flex items-center gap-2 text-sm text-gray-300">
                     <span className="text-blue-400">👥</span>
-                    <span>{mentor.students} students taught</span>
+                    <span>{mentor.students} students enrolled</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-300">
                     <Award size={16} className="text-yellow-400" />

@@ -15,7 +15,7 @@ const poppins = Poppins({
 
 // Metadata for your site (must stay in a server component)
 export const metadata: Metadata = {
-  title: "Hikma Academy - Learn & Grow",
+  title: "Digital Skills Hub - Learn & Grow",
   description:
     "Explore our comprehensive courses in Web Development, Data Science, and Digital Marketing. Join mentorship programs and accelerate your learning journey.",
 }
