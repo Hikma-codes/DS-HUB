@@ -31,9 +31,9 @@ const adminData = {
     { id: 15, name: "Juwell Amankwah", email: "j.amankwah.com", courses: 1, status: "completed" },
   ],
   mentors: [
-    { id: 1, name: "Marcus Johnson", expertise: "Digital Marketing", students: 35 },
-    { id: 2, name: "Sarah Chen", expertise: "Figma Design", students: 28 },
-    { id: 3, name: "Elena Rodriguez", expertise: "UI/UX Design", students: 31 },
+    { id: 1, name: "Marcus Johnson", expertise: "Digital Marketing", students: 12 },
+    { id: 2, name: "Sarah Chen", expertise: "Figma Design", students: 10 },
+    { id: 3, name: "Elena Rodriguez", expertise: "UI/UX Design", students: 13 },
   ]
 }
 
@@ -50,7 +50,8 @@ export default function AdminPage() {
         <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
 
         {/* Admin Info */}
-        <Card className="bg-purple-900/20 border-purple-700 mb-8">
+        <Card className="bg-[#F5A300]/20 border-[#F5A300] mb-8">
+
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Settings size={24} />
@@ -73,7 +74,8 @@ export default function AdminPage() {
               </div>
               <div>
                 <p className="text-gray-400 text-sm">Role</p>
-                <Badge className="bg-purple-600">{adminData.admin.role}</Badge>
+                <Badge className="bg-[#F5A300] text-black">{adminData.admin.role}</Badge>
+
               </div>
             </div>
           </CardContent>
