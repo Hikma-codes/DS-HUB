@@ -5,10 +5,10 @@ import { NextRequest, NextResponse } from 'next/server';
 const mentors = [
     {
         id: 1,
-        name: "Sarah Johnson",
+        name: "Marcus Johnson",
         title: "Digital Marketing Expert",
         bio: "10+ years of experience in digital marketing strategy and execution. Specialized in SEO, content marketing, and social media campaigns.",
-        email: "sarah.johnson@digitalskillshub.com",
+        email: "marcus.j@digitalskillshub.com",
         phone: "+1 (555) 123-4567",
         expertise: ["Digital Marketing", "SEO", "Social Media", "Content Strategy", "Analytics"],
         courses: [1], // Course IDs
@@ -35,7 +35,7 @@ const mentors = [
         name: "Sarah Chen",
         title: "Figma Design Specialist",
         bio: "Senior product designer with expertise in design systems and prototyping. Passionate about creating intuitive user experiences.",
-        email: "sarah.chen@digitalskillshub.com",
+        email: "sarah.c@digitalskillshub.com",
         phone: "+1 (555) 234-5678",
         expertise: ["Figma", "UI Design", "Design Systems", "Prototyping", "User Research"],
         courses: [2],
@@ -59,10 +59,10 @@ const mentors = [
     },
     {
         id: 3,
-        name: "Alex Rodriguez",
+        name: "Elena Rodriguez",
         title: "UI/UX Design Expert",
         bio: "Lead UX designer with 8+ years creating user-centered digital experiences. Advocate for accessible and inclusive design.",
-        email: "alex.rodriguez@digitalskillshub.com",
+        email: "elena.r@digitalskillshub.com",
         phone: "+1 (555) 345-6789",
         expertise: ["UI/UX Design", "User Research", "Wireframing", "Usability Testing", "Design Thinking"],
         courses: [3],
